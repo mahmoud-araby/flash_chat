@@ -1,3 +1,5 @@
+import 'package:flashchat/modules/messages.dart';
+import 'package:flashchat/modules/user_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -9,6 +11,14 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  TextEditingController _textEditingController = TextEditingController();
+  String text;
+  @override
+  void initState() {
+    userAuth.getUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +46,17 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: _textEditingController,
                       onChanged: (value) {
-                        //Do something with the user input.
+                        text = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
                   FlatButton(
                     onPressed: () {
-                      //Implement send functionality.
+                      message.sendMessage(text);
+                      _textEditingController.clear();
                     },
                     child: Text(
                       'Send',
