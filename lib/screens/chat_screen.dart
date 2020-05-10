@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flashchat/component/message_bubble.dart';
 import 'package:flashchat/modules/messages.dart';
 import 'package:flashchat/modules/user_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                //Implement logout functionality
-              }),
+          IconButton(icon: Icon(Icons.close), onPressed: () {}),
         ],
         title: Text('⚡️Chat'),
         backgroundColor: Colors.lightBlueAccent,
@@ -39,6 +37,33 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+                stream: messageModule.messageStream(),
+                builder: (BuildContext context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null) {
+                    final List<DocumentSnapshot> myMessages =
+                        snapshot.data.documents;
+                    myMessages.sort((a, b) => b['time'].compareTo(a['time']));
+                    print(myMessages.first['time']);
+                    return Expanded(
+                      child: ListView.builder(
+                        reverse: true,
+                        itemCount: myMessages.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return MessageBubble(
+                            message: myMessages[index]['text'],
+                            sender: myMessages[index]['sender'],
+                            time: DateTime.fromMicrosecondsSinceEpoch(
+                                myMessages[index]['time']
+                                    .microsecondsSinceEpoch),
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return Text('No Messages');
+                  }
+                }),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -55,7 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
-                      message.sendMessage(text);
+                      messageModule.sendMessage(text);
                       _textEditingController.clear();
                     },
                     child: Text(

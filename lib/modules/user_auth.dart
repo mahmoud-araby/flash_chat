@@ -10,6 +10,7 @@ class UserAuth {
   FirebaseUser loggedUser;
 
   Function(String) get email => (String email) => _user.email = email;
+  String get getEmail => _user.email;
   Function(String) get password =>
       (String Password) => _user.Password = Password;
 
