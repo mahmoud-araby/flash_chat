@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "612605505681",
+    "firebase_url": "https://flash-chat-fa45e.firebaseio.com",
+    "project_id": "flash-chat-fa45e",
+    "storage_bucket": "flash-chat-fa45e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612605505681:android:ccfda2b5259590c1090f30",
+        "android_client_info": {
+          "package_name": "com.araby.flashchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612605505681-e9ssgrme084rvoo6fukr2cdpqpu8tr6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEdNI1xOV9UkNjJevVFpggkQJk72t5Ny4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612605505681-e9ssgrme084rvoo6fukr2cdpqpu8tr6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
