@@ -33,7 +33,8 @@ dependencies:
   cloud_firestore: ^0.13.5
   firebase_auth: ^0.16.0
   modal_progress_hud: ^0.1.3
-
+  agora_rtc_engine: 1.0.5
+  permission_handler: ^3.0.0
 
 dev_dependencies:
   flutter_test:

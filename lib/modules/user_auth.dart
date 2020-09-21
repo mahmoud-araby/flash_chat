@@ -44,7 +44,7 @@ class UserAuth {
     } catch (e) {
       print(e);
     }
-    isBusy = true;
+    isBusy = false;
     return ret;
   }
 
